@@ -8,7 +8,7 @@ function improArray(item){
     return newArray;
 };
 
-let myEach = (collection, callback) => {
+function myEach (collection, callback){
     let newArray = improArray(collection);
     for(let i = 0; i < newArray.length; i++){
         callback(newArray[i]);
@@ -16,7 +16,7 @@ let myEach = (collection, callback) => {
     return collection;
 };
 
-let myMap = (collection, callback) => {
+function myMap(collection, callback){
     let newArray = improArray(collection);
     let anotherArray = []
     for(let i = 0; i < newArray.length; i++){
@@ -26,17 +26,59 @@ let myMap = (collection, callback) => {
     return anotherArray;
 };
 
-let myReduce = (collection, callback, acc) => {
+function myReduce(collection, callback, acc){
     let newArray = improArray(collection);
-  
     if(acc === undefined){
         acc = newArray[0];
-
-        for(let i = 0; i < newArray.length; i++){
+        for(let i = 1; i < newArray.length; i++){
             acc = callback(acc, newArray[i], collection);
         };
 
+    }else{
+        for(let i = 0; i < newArray.length; i++){
+            acc = callback(acc, newArray[i], collection);
+        };
     };
 
     return acc;
+};
+
+function myFind(collection, predicate){
+    let newArray = improArray(collection);
+    return newArray.find(predicate);
+};
+
+
+function myFilter(collection, predicate){
+    let newArray = improArray(collection);
+    return newArray.filter(predicate);
+};
+
+function mySize(collection){
+    let newArray = improArray(collection);
+    return newArray.length;
+};
+
+function myFirst(array, n){
+    if (n == null){
+        return array[0];
+    }else{
+        return array.slice(0, n);
+    };
+};
+
+function myLast(array, n){
+    if (n == null){
+        return array[array.length - 1];
+    }else{
+        return array.slice(-n);
+    };
+};
+
+function myKeys(object){
+    return Object.keys(object);
+};
+
+function myValues(object){
+    return Object.values(object);
 };
